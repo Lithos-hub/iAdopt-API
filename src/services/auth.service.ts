@@ -32,8 +32,8 @@ export const loginUser = async ({ email, password }: Auth) => {
   const encryptedPass = userAlreadyExists?.password ?? '';
   const isCorrect =
     (await verified(password, encryptedPass)) && userAlreadyExists;
-  if (isCorrect !== null) {
-    return 'INCORRECT_PASSWORD OR USER_NOT_FOUND';
+  if (isCorrect === false) {
+    return 'INCORRECT_DATA';
   } else {
     const { _id, email, createdAt } = userAlreadyExists as User;
     return {

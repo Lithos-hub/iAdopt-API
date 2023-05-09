@@ -8,6 +8,6 @@ const router = Router();
 
 router.post('/join', validateSignUp, signUp);
 router.post('/login', validateSignin, signIn);
-router.post('/session', checkJwt, getSession);
+router.get('/session', checkJwt, getSession);
 
 export { router };

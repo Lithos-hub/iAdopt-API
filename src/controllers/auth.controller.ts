@@ -8,7 +8,7 @@ const signUp = async ({ body }: Request, res: Response) => {
   const response = await registerUser(body);
 
   if (response === 'USER_ALREADY_EXISTS') {
-    ErrorHandle(res, 'User already exists', 401);
+    ErrorHandle(res, 'BACKEND_ERROR.REGISTER.USER_ALREADY_EXISTS', 401);
   } else {
     const { _id } = response.user;
     const dir = `${process.cwd()}/public/${String(_id)}`;
@@ -19,8 +19,8 @@ const signUp = async ({ body }: Request, res: Response) => {
 
 const signIn = async ({ body }: Request, res: Response) => {
   const response = await loginUser(body);
-  if (response === 'INCORRECT_PASSWORD OR USER_NOT_FOUND') {
-    ErrorHandle(res, 'Incorrect email or password', 401);
+  if (response === 'INCORRECT_DATA') {
+    ErrorHandle(res, 'BACKEND_ERROR.LOGIN.INCORRECT_DATA', 401);
   } else {
     res.send(response);
   }
@@ -29,8 +29,8 @@ const signIn = async ({ body }: Request, res: Response) => {
 const getSession = async ({ body }: Request, res: Response) => {
   const { _id } = body;
   const response = await getUser(_id);
-  if (response === 'NOT_FOUND') {
-    ErrorHandle(res, 'Invalid session', 401);
+  if (response || response === 'NOT_FOUND') {
+    ErrorHandle(res, 'BACKEND_ERROR.SESSION.NOT_FOUND', 401);
   } else {
     res.send({
       user: response,

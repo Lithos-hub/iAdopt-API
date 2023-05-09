@@ -6,7 +6,7 @@ import { encrypt, genToken } from '@/utils';
 const checkUserAlreadyExists = async (_id: string) =>
   await UserModel.findOne({ _id });
 
-const getUser = async (_id: ObjectId): Promise<any> => {
+const getUser = async (_id: ObjectId) => {
   const response = (await UserModel.findById(_id)) ?? 'NOT_FOUND';
   if (response !== 'NOT_FOUND') {
     const { _id, createdAt, email, reports, generations } = response;
