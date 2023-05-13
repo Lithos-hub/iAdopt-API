@@ -4,7 +4,7 @@ import { Auth } from './auth.interface';
 export interface User extends Auth {
   createdAt?: string;
   reports: [];
-  generations: [];
+  surveys: [];
 }
 
 export interface LoginUser {

@@ -19,7 +19,7 @@ const UserSchema = new Schema<User, Model<User>>(
       required: true,
       type: [Object],
     },
-    generations: {
+    surveys: {
       required: true,
       type: [Object],
     },

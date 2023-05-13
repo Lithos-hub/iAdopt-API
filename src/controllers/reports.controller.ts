@@ -12,7 +12,7 @@ export const handleGetReports = async (
     const response = await getReports(id);
     res.send(response);
   } catch (error) {
-    ErrorHandle(res, 'ERROR_GET_GENERATIONS', 500);
+    ErrorHandle(res, 'ERROR_GET_SURVEYS', 500);
   }
 };
 
@@ -24,7 +24,7 @@ export const handlePostReport = async (
     const response = await postReport(body);
     res.send(response);
   } catch (error) {
-    ErrorHandle(res, 'ERROR_POST_GENERATIONS', 500);
+    ErrorHandle(res, 'ERROR_POST_SURVEYS', 500);
   }
 };
 
@@ -37,7 +37,7 @@ export const handleUpdateReport = async (
     const response = await updateReport(_id, body);
     res.send(response);
   } catch (error) {
-    ErrorHandle(res, 'ERROR_POST_GENERATIONS', 500);
+    ErrorHandle(res, 'ERROR_POST_SURVEYS', 500);
   }
 };
 
@@ -50,6 +50,6 @@ export const handleDeleteReport = async (
     const response = await deleteReport(_id);
     res.send(response);
   } catch (error) {
-    ErrorHandle(res, 'ERROR_DELETE_GENERATIONS', 500);
+    ErrorHandle(res, 'ERROR_DELETE_SURVEYS', 500);
   }
 };

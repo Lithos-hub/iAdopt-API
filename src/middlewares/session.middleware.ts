@@ -4,9 +4,9 @@ import { ErrorHandle, verifyToken } from '@/utils';
 
 const checkJwt = (req: ExtendedRequest, res: Response, next: NextFunction) => {
   try {
-    const token = req.headers['x-token'] ?? '';
+    const token = req.headers['x-token'];
 
-    if (token === '') {
+    if (token === undefined) {
       ErrorHandle(res, 'NOT_TOKEN', 401);
       return;
     }

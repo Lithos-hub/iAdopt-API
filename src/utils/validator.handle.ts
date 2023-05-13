@@ -5,6 +5,7 @@ const validate = (req: Request, res: Response, next: NextFunction) => {
   try {
     validationResult(req).throw();
     next();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(403).send({ errors: error.array() });
   }

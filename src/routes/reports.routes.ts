@@ -9,9 +9,9 @@ import {
 
 const router = Router();
 
-router.get('/reports/:id', checkJwt, handleGetReports);
-router.post('/reports', checkJwt, handlePostReport);
-router.put('/reports/:id', checkJwt, handleUpdateReport);
-router.delete('/reports/:id', checkJwt, handleDeleteReport);
+router.get('/:id', checkJwt, handleGetReports);
+router.post('/', checkJwt, handlePostReport);
+router.put('/:id', checkJwt, handleUpdateReport);
+router.delete('/:id', checkJwt, handleDeleteReport);
 
 export { router };

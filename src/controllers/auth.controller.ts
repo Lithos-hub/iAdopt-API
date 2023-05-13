@@ -3,6 +3,7 @@ import fs from 'fs';
 
 import { getUser, registerUser, loginUser } from '@/services';
 import { ErrorHandle, genToken } from '@/utils';
+import { ExtendedRequest } from '@/interfaces';
 
 const signUp = async ({ body }: Request, res: Response) => {
   const response = await registerUser(body);
@@ -26,15 +27,14 @@ const signIn = async ({ body }: Request, res: Response) => {
   }
 };
 
-const getSession = async ({ body }: Request, res: Response) => {
-  const { _id } = body;
-  const response = await getUser(_id);
-  if (response || response === 'NOT_FOUND') {
+const getSession = async ({ user }: ExtendedRequest, res: Response) => {
+  const response = await getUser(user?._id);
+  if (response === 'NOT_FOUND') {
     ErrorHandle(res, 'BACKEND_ERROR.SESSION.NOT_FOUND', 401);
   } else {
     res.send({
       user: response,
-      token: genToken(_id),
+      token: genToken(user?._id),
     });
   }
 };

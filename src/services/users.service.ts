@@ -7,17 +7,16 @@ const checkUserAlreadyExists = async (_id: string) =>
   await UserModel.findOne({ _id });
 
 const getUser = async (_id: ObjectId) => {
-  const response = (await UserModel.findById(_id)) ?? 'NOT_FOUND';
-  if (response !== 'NOT_FOUND') {
-    const { _id, createdAt, email, reports, generations } = response;
-    return {
-      _id,
-      createdAt,
-      email,
-      reports,
-      generations,
-    };
-  }
+  const response = await UserModel.findById(_id);
+  if (response === null) return 'NOT_FOUND';
+  const { _id: userId, createdAt, email, reports, surveys } = response;
+  return {
+    _id: userId,
+    createdAt,
+    email,
+    reports,
+    surveys,
+  };
 };
 const updateUser = async (id: string, data: User) => {
   const userAlreadyExists = await checkUserAlreadyExists(id);
